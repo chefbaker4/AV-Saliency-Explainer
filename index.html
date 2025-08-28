@@ -187,9 +187,9 @@
     </section>
 
     <!-- Heatmap Analysis -->
-    <section class="section" id="heatmap-analysis">
+    <section class="section" id="Saliemcy-analysis">
       <h2>Heatmap Analysis</h2>
-      <p class="muted">Captions change when the model is guided by saliency (overlayed heatmaps indicate regions of focus).</p>
+      <p class="muted">These examples demonstrate how incorporating saliency maps results in more faithful descriptions. For both of these examples, we first generate captions without slaiency maps to serve as a baseline. We see the captions are plausible. However, when introducing a hypothetical saliency map representing the focus of an AV, we see that the model may have truly had different reasoning. Consider the first video where the truck pulls ahead and the pedestrian crosses the street. A heat map reveals that the AV was not waiting for the light to change but actually stopped because of the pedestrian. We levearge this valuable information and provide a caption that relfects this reasoning. In the second example we have a similar case where the raw caption may cite that the model is primarily driving due to the road being clear, when in reality it is driving through many intersections because the light is also green.</p>
 
       <!-- Example 1 -->
       <div class="grid">
