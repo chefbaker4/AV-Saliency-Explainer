@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Saliency Based Natural Language Explanations for Autonomous Vehicles</title>
+  <meta name="description" content="Project page for AV saliency‑grounded natural language explanations." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b0f19;           /* deep blue/ink */
+      --card: #121828;        /* card surface */
+      --muted: #aab3c5;       /* muted text */
+      --text: #ecf1ff;        /* main text */
+      --accent: #66b2ff;      /* light blue */
+      --accent-2: #9b8cff;    /* violet */
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    *{ box-sizing: border-box; }
+    html,body{ margin:0; padding:0; background: radial-gradient(1200px 600px at 20% -10%, rgba(102,178,255,.15), transparent 60%),
+                radial-gradient(1200px 600px at 100% 20%, rgba(155,140,255,.12), transparent 60%), var(--bg); color:var(--text);
+                font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+    a{ color: var(--accent); text-decoration: none; }
+    .container{ max-width: 1100px; margin: 0 auto; padding: 40px 20px 80px; }
+    .hero{ background: linear-gradient(135deg, rgba(102,178,255,.25), rgba(155,140,255,.25));
+           border: 1px solid rgba(255,255,255,.08); box-shadow: var(--shadow); border-radius: var(--radius); padding: 28px 28px; margin: 24px 0 28px; }
+    h1{ margin:0 0 10px; font-weight: 800; letter-spacing: .3px; }
+    .authors{ color: var(--muted); font-weight: 600; margin-top: 6px; }
+    .section{ background: var(--card); border: 1px solid rgba(255,255,255,.06); border-radius: var(--radius); padding: 28px; margin: 22px 0; box-shadow: var(--shadow); }
+    .section h2{ margin-top: 0; letter-spacing: .2px; }
+    .muted{ color: var(--muted); }
+    .grid{ display: grid; grid-template-columns: 1fr; gap: 18px; }
+    @media (min-width: 850px){ .grid-2{ grid-template-columns: 1fr 1fr; } }
+    figure{ margin:0; background: rgba(255,255,255,.02); border: 1px solid rgba(255,255,255,.05); border-radius: 14px; overflow: hidden; }
+    figure figcaption{ font-size: 14px; padding: 8px 12px 12px; color: var(--muted); border-top: 1px solid rgba(255,255,255,.06); }
+    .caption-title{ display:block; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+    video, img{ display:block; width: 100%; height: auto; background: #0d111a; }
+    .badge{ display:inline-block; padding: 4px 10px; border-radius:12px; background:rgba(102,178,255,.15); color: #d8e9ff; border:1px solid rgba(102,178,255,.35); font-size: 12px; font-weight: 700; letter-spacing:.3px; text-transform: uppercase; }
+    .two-captions{ display:grid; grid-template-columns:1fr; gap:8px; }
+    @media (min-width:600px){ .two-captions{ grid-template-columns:1fr 1fr; } }
+    .footer{ text-align:center; color: var(--muted); margin-top: 26px; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <!-- Hero / Title -->
+    <header class="hero">
+      <div class="badge">Project Page</div>
+      <h1>Saliency Based Natural Language Explanations for Autonomous Vehicles</h1>
+      <div class="authors">Daniel Baker · Adib Rouf · Guo Zhefan (Ben)</div>
+    </header>
+
+    <!-- Overview -->
+    <section class="section" id="overview">
+      <h2>Overview</h2>
+      <p class="muted">
+        Modern end-to-end autonomous vehicle (AV) systems achieve impressive performance but remain opaque “black-boxes,” raising concerns about trust and safety. Explainable AI (XAI) methods such as saliency maps highlight the input regions that influence decisions. We propose a multimodal large language model (M‑LLM) framework that integrates saliency maps into caption generation, ensuring explanations are explicitly tied to the regions the AV focused on when taking an action. By distinguishing salient regions in the vision encoder and emphasizing them during captioning, our method produces more faithful, region‑specific explanations of AV behavior.
+      </p>
+    </section>
+
+    <!-- Video Analysis (no saliency) -->
+    <section class="section" id="video-analysis">
+      <h2>Video Analysis</h2>
+      <p class="muted">Model captions for a raw driving video (no saliency map provided).</p>
+      <div class="grid">
+        <figure>
+          <!-- Replace src with: assets/highway_raw.mp4 -->
+          <video src="test_video/highway_raw.mp4" controls playsinline></video>
+          <figcaption>
+            <span class="caption-title">Predicted Caption</span>
+            The car is slowing down because the car in front of it is slowing down.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Heatmap Analysis (overlayed) -->
+    <section class="section" id="heatmap-analysis">
+      <h2>Heatmap Analysis</h2>
+      <p class="muted">Captions change when the model is guided by saliency (overlayed heatmaps indicate regions of focus).</p>
+
+      <!-- Example 1: Pedestrian overlay -->
+      <div class="grid">
+        <figure>
+          <!-- Replace src with: assets/pedestrian_overlay.mp4 -->
+          <video src="test_video/pedestrian_overlay.mp4" controls playsinline></video>
+          <figcaption>
+            <div class="two-captions">
+              <div>
+                <span class="caption-title">Video only</span>
+                The car is stopped because the driver is waiting for the light to change.
+              </div>
+              <div>
+                <span class="caption-title">With saliency map</span>
+                The car is stopped because the driver is waiting for a pedestrian to cross the street.
+              </div>
+            </div>
+          </figcaption>
+        </figure>
+      </div>
+
+      <!-- Example 2: Traffic lights overlay -->
+      <div class="grid" style="margin-top:14px;">
+        <figure>
+          <!-- Replace src with: assets/traffic_lights_overlay.mp4 -->
+          <video src="test_video/traffic_lights_overlay.mp4" controls playsinline></video>
+          <figcaption>
+            <div class="two-captions">
+              <div>
+                <span class="caption-title">Video only</span>
+                The car is driving forward because the road is clear.
+              </div>
+              <div>
+                <span class="caption-title">With saliency map</span>
+                The car is driving forward because the light is green.
+              </div>
+            </div>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Model Demonstration (GUI screen recording) -->
+    <section class="section" id="model-demo">
+      <h2>Model Demonstration</h2>
+      <p class="muted">Screen recording of the GUI: home → Video Analysis (run 1 example, show generated caption) → Heatmap Analysis (run 1–2 examples; compare raw vs. focused captions).</p>
+      <figure>
+        <video src="test_video/gui_demo.mp4" controls playsinline></video>
+        <figcaption>Full workflow demonstration.</figcaption>
+      </figure>
+    </section>
+
+    <div class="footer">© 2025 AV Saliency Explainer</div>
+  </main>
+</body>
+</html>
