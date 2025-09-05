@@ -247,7 +247,8 @@
 
     <!-- Video Analysis 1-->
     <section class="section" id="video-analysis">
-      <h2>Video Analysis</h2>
+      <h2>Model Interpretation</h2>
+      <h3>Exmple 1</h3>
       <p class="muted">
         This side-by-side comparison shows our model with and without saliency maps and demonstrates how incorporating saliency maps results in more faithful descriptions. For both of these examples, we first generate captions without slaiency maps to serve as a baseline. We see the captions are plausible. However, when introducing a hypothetical saliency map representing the focus of an AV, we see that the model may have truly had different reasoning. Consider the first video where the truck pulls ahead and the pedestrian crosses the street. A heat map reveals that the AV was not waiting for the light to change but actually stopped because of the pedestrian. We levearge this valuable information and provide a caption that relfects this reasoning.
       </p>
@@ -295,12 +296,12 @@
       });
       </script>
 
-    </section>
+
 
 
     <!-- Video Analysis 2-->
-    <section class="section" id="video-analysis">
-      <h2>Video Analysis</h2>
+
+      <h3>Exmple 2</h3>
       <p class="muted"> In this next example we have a similar case where the raw caption may cite that the model is primarily driving due to the road being clear, when in reality it is driving through many intersections because the light is also green.</p>
       
       <div class="video-grid">
@@ -346,12 +347,9 @@
       });
       </script>
 
-    </section>
-
 
     <!-- Video Analysis 3-->
-    <section class="section" id="video-analysis">
-      <h2>Video Analysis</h2>
+      <h3>Exmple 3</h3>
       <p class="muted">
         Here is another example where the saliency-agnostic model assumed the car stopped for one reason, but the saliency map revealed the AV actually stopped because of the pedestrian. Our saliency-aware caption reflects this!
       </p>
@@ -399,12 +397,9 @@
       });
       </script>
 
-    </section>
-
 
     <!-- Video Analysis 4-->
-    <section class="section" id="video-analysis">
-      <h2>Video Analysis</h2>
+    <h3>Exmple 4</h3>
       <p class="muted">
         Finally, we have another example where our model helps reveal the AV's true intentions with natural language.
       </p>
