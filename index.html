@@ -108,12 +108,14 @@
       border-radius: 14px;
       overflow: hidden;
     }
+
     figure figcaption {
-      font-size: 20px;
+      font-size: 16px;
       padding: 8px 12px 12px;
       color: var(--muted);
       border-top: 1px solid rgba(255,255,255,.06);
     }
+
     .caption-title {
       display: block;
       font-weight: 600;
@@ -128,11 +130,15 @@
       height: auto;
       background: #0d111a;
     }
-    .video-small {
-      max-width: 800px;
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      max-width: 1600px;
       margin: 0 auto;
-      display: block;
     }
+
 
     /* Captions */
     .two-captions {
@@ -214,9 +220,16 @@
     <section class="section" id="overview">
       <h2>Overview</h2>
       <p class="muted">
-        Modern end-to-end autonomous vehicle (AV) systems achieve impressive performance but remain opaque “black-boxes,” raising concerns about trust and safety. Explainable AI (XAI) methods such as saliency maps highlight the input regions that influence decisions. We propose a multimodal large language model (M-LLM) framework that integrates saliency maps into caption generation, ensuring explanations are explicitly tied to the regions the AV focused on when taking an action. By distinguishing salient regions in the vision encoder and emphasizing them during captioning, our method produces more faithful, region-specific explanations of AV behavior.
+        We aim to provide natural language explanations of Autonomous Vehicle (AV) behavior to build user trust and encourage adoption of this technology. Today, passengers may be left wondering why their AV makes certain decisions—such as stopping abruptly—without any clear explanation. Our approach addresses this gap by revealing the vehicle’s motivations in plain English.
+      </p>
+      <p class="muted">
+        Modern end-to-end AV systems achieve impressive performance but remain opaque “black boxes,” raising trust and safety concerns. Explainable AI (XAI) techniques like saliency maps consider a model's internal calculations and highlight the input regions that influence the AV's decisions. We propose a vision language model (VLM) framework that incorporates these saliency maps into caption generation, producing faithful, region-specific explanations of AV behavior.
+      </p>
+      <p class="muted">
+        Current VLMs have no mechanism to incorporate saliency maps, and thus cannot truly reveal an AV's thought process. Rather, they simply act as a video captioning tool. We refer to them as saliency-agnostic models and say they produce video captions. On the other hand, our model is saliency-aware and produces vehicular captions.
       </p>
     </section>
+
 
     <!-- flowchart -->
     <figure class="flowchart">
@@ -227,22 +240,33 @@
     <!-- Video Analysis -->
     <section class="section" id="video-analysis">
       <h2>Video Analysis</h2>
-      <p class="muted">This video demonstrates our model without the incorporation of a saliency map. We can see that it effectively provides a justification of the action of the ego vehicle. Although this description reflects what a human driver may do, we cannot say for certain that the vehicle shares our reasoning.</p>
-      <div class="grid">
+      <p class="muted">
+        This side-by-side comparison shows our model with and without saliency maps and demonstrates how incorporating saliency maps results in more faithful descriptions. For both of these examples, we first generate captions without slaiency maps to serve as a baseline. We see the captions are plausible. However, when introducing a hypothetical saliency map representing the focus of an AV, we see that the model may have truly had different reasoning. Consider the first video where the truck pulls ahead and the pedestrian crosses the street. A heat map reveals that the AV was not waiting for the light to change but actually stopped because of the pedestrian. We levearge this valuable information and provide a caption that relfects this reasoning.
+      </p>
+      
+      <div class="video-grid">
         <figure>
-          <video class="video-small" src="demo_videos/highway_raw.mp4" controls playsinline></video>
+          <video src="demo_videos/pedestrian_raw_big.mp4" controls playsinline></video>
           <figcaption>
-            <span class="caption-title">Predicted Caption</span>
-            The car is slowing down because the car in front of it is slowing down.
+            <span class="caption-title">Predicted Caption (Saliency Agnostic)</span>
+            The car is stopped because the driver is waiting for the light to change.
+          </figcaption>
+        </figure>
+
+        <figure>
+          <video src="demo_videos/pedestrian_overlay_big.mp4" controls playsinline></video>
+          <figcaption>
+            <span class="caption-title">Predicted Caption (Saliency Aware)</span>
+            The car is stopped because the driver is waiting for a pedestrian to cross the street.
           </figcaption>
         </figure>
       </div>
     </section>
 
     <!-- Saliency Analysis -->
-    <section class="section" id="Saliemcy-analysis">
+    <section class="section" id="Saliency-analysis">
       <h2>Saliency Analysis</h2>
-      <p class="muted">These examples demonstrate how incorporating saliency maps results in more faithful descriptions. For both of these examples, we first generate captions without slaiency maps to serve as a baseline. We see the captions are plausible. However, when introducing a hypothetical saliency map representing the focus of an AV, we see that the model may have truly had different reasoning. Consider the first video where the truck pulls ahead and the pedestrian crosses the street. A heat map reveals that the AV was not waiting for the light to change but actually stopped because of the pedestrian. We levearge this valuable information and provide a caption that relfects this reasoning. In the second example we have a similar case where the raw caption may cite that the model is primarily driving due to the road being clear, when in reality it is driving through many intersections because the light is also green.</p>
+      <p class="muted"> In the second example we have a similar case where the raw caption may cite that the model is primarily driving due to the road being clear, when in reality it is driving through many intersections because the light is also green.</p>
 
       <!-- Example 1 -->
       <div class="grid">
