@@ -38,7 +38,7 @@
 
     a { color: var(--accent); text-decoration: none; }
 
-    #toggleBtn {
+    .toggleBtn {
       background-color: #007bff;
       color: white;
       border: none;
@@ -47,7 +47,7 @@
       border-radius: 8px;
       cursor: pointer;
     }
-    #toggleBtn:hover {
+    .toggleBtn:hover {
       background-color: #0056b3;
     }
 
@@ -271,13 +271,14 @@
       </div>
 
       <div style="text-align:center; margin-top:1rem;">
-        <button id="toggleBtn">Play</button>
+        <button id="toggleBtn1" class="toggleBtn">Play</button>
+
       </div>
 
       <script>
       const v1 = document.getElementById("video1");
       const v2 = document.getElementById("video2");
-      const toggleBtn1 = document.getElementById("toggleBtn");
+      const toggleBtn1 = document.getElementById("toggleBtn1");
 
       toggleBtn1.addEventListener("click", () => {
         if (v1.paused || v2.paused) {
@@ -321,13 +322,14 @@
       </div>
 
       <div style="text-align:center; margin-top:1rem;">
-        <button id="toggleBtn">Play</button>
+        <button id="toggleBtn2" class="toggleBtn">Play</button>
+
       </div>
 
       <script>
       const v3 = document.getElementById("video3");
       const v4 = document.getElementById("video4");
-      const toggleBtn2 = document.getElementById("toggleBtn");
+      const toggleBtn2 = document.getElementById("toggleBtn2");
 
       toggleBtn2.addEventListener("click", () => {
         if (v3.paused || v4.paused) {
@@ -373,13 +375,14 @@
       </div>
 
       <div style="text-align:center; margin-top:1rem;">
-        <button id="toggleBtn">Play</button>
+        <button id="toggleBtn3" class="toggleBtn">Play</button>
+
       </div>
 
       <script>
       const v5 = document.getElementById("video5");
       const v6 = document.getElementById("video6");
-      const toggleBtn3 = document.getElementById("toggleBtn");
+      const toggleBtn3 = document.getElementById("toggleBtn3");
 
       toggleBtn3.addEventListener("click", () => {
         if (v5.paused || v6.paused) {
@@ -425,13 +428,14 @@
       </div>
 
       <div style="text-align:center; margin-top:1rem;">
-        <button id="toggleBtn">Play</button>
+        <button id="toggleBtn4" class="toggleBtn">Play</button>
+
       </div>
 
       <script>
       const v7 = document.getElementById("video7");
       const v8 = document.getElementById("video8");
-      const toggleBtn4 = document.getElementById("toggleBtn");
+      const toggleBtn4 = document.getElementById("toggleBtn4");
 
       toggleBtn4.addEventListener("click", () => {
         if (v7.paused || v8.paused) {
