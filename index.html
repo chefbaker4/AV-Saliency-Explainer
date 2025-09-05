@@ -245,7 +245,7 @@
       <!-- <figcaption>Motivating example of our method</figcaption> -->
     </figure>
 
-    <!-- Video Analysis -->
+    <!-- Video Analysis 1-->
     <section class="section" id="video-analysis">
       <h2>Video Analysis</h2>
       <p class="muted">
@@ -254,7 +254,7 @@
       
       <div class="video-grid">
         <figure>
-          <video src="demo_videos/pedestrian_raw_big.mp4" playsinline></video>
+          <video id="video1" src="demo_videos/pedestrian_raw_big.mp4" playsinline></video>
           <figcaption>
             <span class="caption-title">Predicted Caption (Saliency Agnostic)</span>
             The car is stopped because the driver is waiting for the light to change.
@@ -262,7 +262,7 @@
         </figure>
 
         <figure>
-          <video src="demo_videos/pedestrian_overlay_big.mp4" playsinline></video>
+          <video id="video2" src="demo_videos/pedestrian_overlay_big.mp4" playsinline></video>
           <figcaption>
             <span class="caption-title">Predicted Caption (Saliency Aware)</span>
             The car is stopped because the driver is waiting for a pedestrian to cross the street.
@@ -277,67 +277,177 @@
       <script>
       const v1 = document.getElementById("video1");
       const v2 = document.getElementById("video2");
-      const toggleBtn = document.getElementById("toggleBtn");
+      const toggleBtn1 = document.getElementById("toggleBtn");
 
-      toggleBtn.addEventListener("click", () => {
+      toggleBtn1.addEventListener("click", () => {
         if (v1.paused || v2.paused) {
           v1.currentTime = 0;
           v2.currentTime = 0;
           v1.play();
           v2.play();
-          toggleBtn.textContent = "Pause";
+          toggleBtn1.textContent = "Pause";
         } else {
           v1.pause();
           v2.pause();
-          toggleBtn.textContent = "Play";
+          toggleBtn1.textContent = "Play";
         }
       });
       </script>
 
     </section>
 
-    <!-- Saliency Analysis -->
-    <section class="section" id="Saliency-analysis">
-      <h2>Saliency Analysis</h2>
-      <p class="muted"> In the second example we have a similar case where the raw caption may cite that the model is primarily driving due to the road being clear, when in reality it is driving through many intersections because the light is also green.</p>
 
-      <!-- Example 1 -->
-      <div class="grid">
+    <!-- Video Analysis 2-->
+    <section class="section" id="video-analysis">
+      <h2>Video Analysis</h2>
+      <p class="muted"> In this next example we have a similar case where the raw caption may cite that the model is primarily driving due to the road being clear, when in reality it is driving through many intersections because the light is also green.</p>
+      
+      <div class="video-grid">
         <figure>
-          <video class="video-small" src="demo_videos/pedestrian_overlay_big.mp4" controls playsinline></video>
+          <video id="video3" src="demo_videos/traffic_lights_raw_big.mp4" playsinline></video>
           <figcaption>
-            <div class="two-captions">
-              <div>
-                <span class="caption-title">Predicted caption (Video only)</span>
-                The car is stopped because the driver is waiting for the light to change.
-              </div>
-              <div>
-                <span class="caption-title">Predicted caption (With saliency map)</span>
-                The car is stopped because the driver is waiting for a pedestrian to cross the street.
-              </div>
-            </div>
+            <span class="caption-title">Predicted Caption (Saliency Agnostic)</span>
+            The car is driving forward because the road is clear.
+          </figcaption>
+        </figure>
+
+        <figure>
+          <video id="video4" src="demo_videos/traffic_lights_overlay_big.mp4" playsinline></video>
+          <figcaption>
+            <span class="caption-title">Predicted Caption (Saliency Aware)</span>
+            The car is driving forward because the light is green.
           </figcaption>
         </figure>
       </div>
 
-      <!-- Example 2 -->
-      <div class="grid" style="margin-top:14px;">
+      <div style="text-align:center; margin-top:1rem;">
+        <button id="toggleBtn">Play</button>
+      </div>
+
+      <script>
+      const v3 = document.getElementById("video3");
+      const v4 = document.getElementById("video4");
+      const toggleBtn2 = document.getElementById("toggleBtn");
+
+      toggleBtn2.addEventListener("click", () => {
+        if (v3.paused || v4.paused) {
+          v3.currentTime = 0;
+          v4.currentTime = 0;
+          v3.play();
+          v4.play();
+          toggleBtn2.textContent = "Pause";
+        } else {
+          v3.pause();
+          v4.pause();
+          toggleBtn2.textContent = "Play";
+        }
+      });
+      </script>
+
+    </section>
+
+
+    <!-- Video Analysis 3-->
+    <section class="section" id="video-analysis">
+      <h2>Video Analysis</h2>
+      <p class="muted">
+        Here is another example where the saliency-agnostic model assumed the car stopped for one reason, but the saliency map revealed the AV actually stopped because of the pedestrian. Our saliency-aware caption reflects this!
+      </p>
+      
+      <div class="video-grid">
         <figure>
-          <video class="video-small" src="demo_videos/traffic_lights_overlay_big.mp4" controls playsinline></video>
+          <video id="video5" src="demo_videos/three_things_raw_trimmed.mp4" playsinline></video>
           <figcaption>
-            <div class="two-captions">
-              <div>
-                <span class="caption-title">Predicted caption (Video only)</span>
-                The car is driving forward because the road is clear.
-              </div>
-              <div>
-                <span class="caption-title">Predicted caption (With saliency map)</span>
-                The car is driving forward because the light is green.
-              </div>
-            </div>
+            <span class="caption-title">Predicted Caption (Saliency Agnostic)</span>
+            The car stopped at the red light.
+          </figcaption>
+        </figure>
+
+        <figure>
+          <video id="video6" src="demo_videos/three_overlay.mp4" playsinline></video>
+          <figcaption>
+            <span class="caption-title">Predicted Caption (Saliency Aware)</span>
+            The car stopped because the pedestrian was crossing the street.
           </figcaption>
         </figure>
       </div>
+
+      <div style="text-align:center; margin-top:1rem;">
+        <button id="toggleBtn">Play</button>
+      </div>
+
+      <script>
+      const v5 = document.getElementById("video5");
+      const v6 = document.getElementById("video6");
+      const toggleBtn3 = document.getElementById("toggleBtn");
+
+      toggleBtn3.addEventListener("click", () => {
+        if (v5.paused || v6.paused) {
+          v5.currentTime = 0;
+          v6.currentTime = 0;
+          v5.play();
+          v6.play();
+          toggleBtn3.textContent = "Pause";
+        } else {
+          v5.pause();
+          v6.pause();
+          toggleBtn3.textContent = "Play";
+        }
+      });
+      </script>
+
+    </section>
+
+
+    <!-- Video Analysis 4-->
+    <section class="section" id="video-analysis">
+      <h2>Video Analysis</h2>
+      <p class="muted">
+        Finally, we have another example where our model helps reveal the AV's true intentions with natural language.
+      </p>
+      
+      <div class="video-grid">
+        <figure>
+          <video id="video7" src="demo_videos/multispot_raw_trimmed.mp4" playsinline></video>
+          <figcaption>
+            <span class="caption-title">Predicted Caption (Saliency Agnostic)</span>
+            The car is turning right because the light is green.
+          </figcaption>
+        </figure>
+
+        <figure>
+          <video id="video8" src="demo_videos/multispot_overlay.mp4" playsinline></video>
+          <figcaption>
+            <span class="caption-title">Predicted Caption (Saliency Aware)</span>
+            The car is moving forward slowly because the pedestrian is crossing the street.
+          </figcaption>
+        </figure>
+      </div>
+
+      <div style="text-align:center; margin-top:1rem;">
+        <button id="toggleBtn">Play</button>
+      </div>
+
+      <script>
+      const v7 = document.getElementById("video7");
+      const v8 = document.getElementById("video8");
+      const toggleBtn4 = document.getElementById("toggleBtn");
+
+      toggleBtn4.addEventListener("click", () => {
+        if (v7.paused || v8.paused) {
+          v7.currentTime = 0;
+          v8.currentTime = 0;
+          v7.play();
+          v8.play();
+          toggleBtn4.textContent = "Pause";
+        } else {
+          v7.pause();
+          v8.pause();
+          toggleBtn4.textContent = "Play";
+        }
+      });
+      </script>
+
     </section>
 
     <!-- Model Demonstration -->
