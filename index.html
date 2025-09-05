@@ -38,6 +38,19 @@
 
     a { color: var(--accent); text-decoration: none; }
 
+    #toggleBtn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    #toggleBtn:hover {
+      background-color: #0056b3;
+    }
+
     .container {
       max-width: 1100px;
       margin: 0 auto;
@@ -101,6 +114,13 @@
       .grid-2 { grid-template-columns: 1fr 1fr; }
     }
 
+    .video-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
     figure {
       margin: 0;
       background: rgba(255,255,255,.02);
@@ -108,35 +128,23 @@
       border-radius: 14px;
       overflow: hidden;
     }
-
     figure figcaption {
       font-size: 16px;
       padding: 8px 12px 12px;
       color: var(--muted);
       border-top: 1px solid rgba(255,255,255,.06);
     }
-
     .caption-title {
       display: block;
       font-weight: 600;
       color: var(--text);
       margin-bottom: 6px;
     }
-
-    /* Video */
-    video, img {
+    video {
       display: block;
       width: 100%;
       height: auto;
       background: #0d111a;
-    }
-
-    .video-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      max-width: 1600px;
-      margin: 0 auto;
     }
 
 
@@ -246,7 +254,7 @@
       
       <div class="video-grid">
         <figure>
-          <video src="demo_videos/pedestrian_raw_big.mp4" controls playsinline></video>
+          <video src="demo_videos/pedestrian_raw_big.mp4" playsinline></video>
           <figcaption>
             <span class="caption-title">Predicted Caption (Saliency Agnostic)</span>
             The car is stopped because the driver is waiting for the light to change.
@@ -254,13 +262,38 @@
         </figure>
 
         <figure>
-          <video src="demo_videos/pedestrian_overlay_big.mp4" controls playsinline></video>
+          <video src="demo_videos/pedestrian_overlay_big.mp4" playsinline></video>
           <figcaption>
             <span class="caption-title">Predicted Caption (Saliency Aware)</span>
             The car is stopped because the driver is waiting for a pedestrian to cross the street.
           </figcaption>
         </figure>
       </div>
+
+      <div style="text-align:center; margin-top:1rem;">
+        <button id="toggleBtn">Play</button>
+      </div>
+
+      <script>
+      const v1 = document.getElementById("video1");
+      const v2 = document.getElementById("video2");
+      const toggleBtn = document.getElementById("toggleBtn");
+
+      toggleBtn.addEventListener("click", () => {
+        if (v1.paused || v2.paused) {
+          v1.currentTime = 0;
+          v2.currentTime = 0;
+          v1.play();
+          v2.play();
+          toggleBtn.textContent = "Pause";
+        } else {
+          v1.pause();
+          v2.pause();
+          toggleBtn.textContent = "Play";
+        }
+      });
+      </script>
+
     </section>
 
     <!-- Saliency Analysis -->
