@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://chefbaker4.github.io/AV-Saliency-Explainer/sitemap.xml
